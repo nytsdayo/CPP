@@ -3,21 +3,27 @@
 
 # include <string>
 
-enum Field {
-    FIRST_NAME,
-    LAST_NAME,
-    NICKNAME,
-    PHONE_NUMBER,
-    DARKEST_SECRET
-};
-
 class Contact {
 private:
-    std::string fields[5]; // 5つのフィールドを配列で管理
+    std::string first_name;
+	std::string last_name;
+	std::string nickname;
+	std::string phone_number;
+	std::string darkest_secret;
 
 public:
-    void setField(int fieldIndex, std::string value);
-    std::string getField(int fieldIndex);
+	// セッター
+    void setFirstName(const std::string& name);
+    void setLastName(const std::string& name);
+    void setNickname(const std::string& name);
+    void setPhoneNumber(const std::string& number);
+    void setDarkestSecret(const std::string& secret);
+    // ゲッター
+    std::string getFirstName() const;
+    std::string getLastName() const;
+    std::string getNickname() const;
+    std::string getPhoneNumber() const;
+    std::string getDarkestSecret() const;
     bool isValid();
     void displaySummary(int index);
     void displayDetail();

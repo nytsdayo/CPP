@@ -10,7 +10,7 @@ CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Werror -Wextra -g
 
 # 作成する実行可能ファイルの名前を指定します。
-TARGET = ex00
+TARGET = megaphone
 
 # コンパイル対象のソースファイル名を指定します。
 SRCS = megaphone.cpp

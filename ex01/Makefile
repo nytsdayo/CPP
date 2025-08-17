@@ -1,17 +1,17 @@
 # --- 変数の定義 ---
 
 # C++コンパイラ
-CXX = g++
+CXX = c++
 
 # コンパイルオプション
 CXXFLAGS = -std=c++98 -Wall -g
 
 # 実行可能ファイル名
-TARGET = my_program
+TARGET = phonebook
 
 # すべてのソースファイル (.cpp) を列挙します。
 # 自動で .cpp ファイルを探すようにしています。
-SRCS = $(wildcard *.cpp)
+SRCS = Contact.cpp main.cpp PhoneBook.cpp
 
 # ソースファイル名からオブジェクトファイル名 (.o) を生成します。
 OBJS = $(SRCS:.cpp=.o)
@@ -33,7 +33,13 @@ $(TARGET): $(OBJS)
 
 # クリーンルール: 生成されたファイルを削除します。
 clean:
-	rm -f $(TARGET) $(OBJS)
+	rm -f $(OBJS)
 
+fclean:
+	make clean
+	rm -f $(TARGET)
+re:
+	make fclean
+	make
 # .PHONY の設定
-.PHONY: all clean
+.PHONY: all clean fclean re

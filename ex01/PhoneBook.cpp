@@ -1,7 +1,7 @@
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 #include <iostream>
 #include <iomanip>
-#include <limits> // std::numeric_limits を使うために必要
+#include <limits>
 
 PhoneBook::PhoneBook() {
     this->contactCount = 0;
@@ -10,7 +10,7 @@ PhoneBook::PhoneBook() {
 
 void PhoneBook::addContact(Contact newContact) {
     this->contacts[this->nextIndex] = newContact;
-    this->nextIndex = (this->nextIndex + 1) % 8; // 0-7を循環
+    this->nextIndex = (this->nextIndex + 1) % 8;
     if (this->contactCount < 8) {
         this->contactCount++;
     }
@@ -22,7 +22,6 @@ void PhoneBook::searchContacts() {
         return;
     }
 
-    // ヘッダー表示
     std::cout << "-------------------------------------------" << std::endl;
     std::cout << "|" << std::setw(10) << std::right << "index";
     std::cout << "|" << std::setw(10) << std::right << "first name";
@@ -30,24 +29,21 @@ void PhoneBook::searchContacts() {
     std::cout << "|" << std::setw(10) << std::right << "nickname" << "|" << std::endl;
     std::cout << "-------------------------------------------" << std::endl;
 
-    // 連絡先一覧表示
     for (int i = 0; i < this->contactCount; i++) {
         this->contacts[i].displaySummary(i + 1);
     }
     std::cout << "-------------------------------------------" << std::endl;
 
-    // インデックス入力
     int index;
     while (true) {
         std::cout << "Enter index to display: ";
         std::cin >> index;
         if (std::cin.good() && index > 0 && index <= this->contactCount) {
-            // 入力バッファをクリア
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             break;
         }
-        std::cin.clear(); // エラーフラグをクリア
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // バッファをクリア
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Invalid index. Please try again." << std::endl;
     }
 

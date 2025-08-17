@@ -10,40 +10,58 @@ static std::string truncate(std::string str) {
     return str;
 }
 
-void Contact::setField(int fieldIndex, std::string value) {
-    if (fieldIndex >= 0 && fieldIndex < 5) {
-        this->fields[fieldIndex] = value;
-    }
+void Contact::setFirstName(const std::string& name) {
+    this->first_name = name; // this->は省略可能
 }
 
-std::string Contact::getField(int fieldIndex) {
-    if (fieldIndex >= 0 && fieldIndex < 5) {
-        return this->fields[fieldIndex];
-    }
-    return "";
+void Contact::setLastName(const std::string& name) {
+    last_name = name;
 }
 
-bool Contact::isValid() {
-    for (int i = 0; i < 5; i++) {
-        if (this->fields[i].empty()) {
-            return false;
-        }
-    }
-    return true;
+void Contact::setNickname(const std::string& name) {
+    nickname = name;
+}
+
+void Contact::setPhoneNumber(const std::string& number) {
+    phone_number = number;
+}
+
+void Contact::setDarkestSecret(const std::string& secret) {
+    darkest_secret = secret;
+}
+
+std::string Contact::getFirstName() const {
+    return first_name;
+}
+
+std::string Contact::getLastName() const {
+    return last_name;
+}
+
+std::string Contact::getNickname() const {
+    return nickname;
+}
+
+std::string Contact::getPhoneNumber() const {
+    return phone_number;
+}
+
+std::string Contact::getDarkestSecret() const {
+    return darkest_secret;
 }
 
 void Contact::displaySummary(int index) {
     std::cout << "|" << std::setw(10) << std::right << index;
-    std::cout << "|" << std::setw(10) << std::right << truncate(this->fields[FIRST_NAME]);
-    std::cout << "|" << std::setw(10) << std::right << truncate(this->fields[LAST_NAME]);
-    std::cout << "|" << std::setw(10) << std::right << truncate(this->fields[NICKNAME]);
+    std::cout << "|" << std::setw(10) << std::right << truncate(this->first_name);
+    std::cout << "|" << std::setw(10) << std::right << truncate(this->last_name);
+    std::cout << "|" << std::setw(10) << std::right << truncate(this->nickname);
     std::cout << "|" << std::endl;
 }
 
 void Contact::displayDetail() {
-    std::cout << "First Name:     " << this->fields[FIRST_NAME] << std::endl;
-    std::cout << "Last Name:      " << this->fields[LAST_NAME] << std::endl;
-    std::cout << "Nickname:       " << this->fields[NICKNAME] << std::endl;
-    std::cout << "Phone Number:   " << this->fields[PHONE_NUMBER] << std::endl;
-    std::cout << "Darkest Secret: " << this->fields[DARKEST_SECRET] << std::endl;
+    std::cout << "First Name:     " << this->first_name << std::endl;
+    std::cout << "Last Name:      " << this->last_name << std::endl;
+    std::cout << "Nickname:       " << this->nickname << std::endl;
+    std::cout << "Phone Number:   " << this->phone_number << std::endl;
+    std::cout << "Darkest Secret: " << this->darkest_secret << std::endl;
 }
