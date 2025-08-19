@@ -18,24 +18,25 @@ int main() {
     std::string command;
 
     while (true) {
-        std::cout << "\nEnter command (ADD, SEARCH, EXIT): ";
-        if (!std::getline(std::cin, command)) {
-            break;
-        }
-        if (command == "ADD") {
-            try {
-                add(phoneBook); 
+		try {
+			std::cout << "\nEnter command (ADD, SEARCH, EXIT): ";
+			if (!std::getline(std::cin, command)) {
+	            throw std::runtime_error("Input stream closed.");
+				break;
 			}
-            catch (const std::exception& e) {
-                std::cout << std::endl << " Exiting program." << std::endl;
-                break;
-            }
-        } else if (command == "SEARCH") {
-            phoneBook.searchContacts();
-        } else if (command == "EXIT") {
-            break;
-        }
-    }
+			if (command == "ADD") {
+				add(phoneBook); 
+			} else if (command == "SEARCH") {
+				phoneBook.searchContacts();
+			} else if (command == "EXIT") {
+				break;
+			}
+    	}
+		catch (const std::exception& e) {
+			std::cout << std::endl << " Exiting program." << std::endl;
+			break;
+		}
+	}
     return 0;
 }
 
@@ -99,6 +100,7 @@ std::string promptAndGetValidatedInput(
         
 		if (!std::getline(std::cin, input)) {
             throw std::runtime_error("Input stream closed.");
+			break;
         }
         if (input.empty()) {
             std::cout << "Field cannot be empty." << std::endl;

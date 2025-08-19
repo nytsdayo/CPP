@@ -2,6 +2,8 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <stdexcept>
+#include <sstream>
 
 PhoneBook::PhoneBook() {
     this->contactCount = 0;
@@ -34,14 +36,25 @@ void PhoneBook::searchContacts() {
     }
     std::cout << "-------------------------------------------" << std::endl;
 
-    int index;
+	int index = 0;
     while (true) {
         std::cout << "Enter index to display: ";
-        std::cin >> index;
-        if (std::cin.good() && index > 0 && index <= this->contactCount) {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            break;
+        std::string line;
+
+		if (!std::getline(std::cin, line)) {
+            throw std::runtime_error("Input stream closed.");
+			break;
         }
+
+		if (line.empty()){
+			std::cout << "Field cannot be empty." << std::endl;
+		}
+		std::stringstream ss(line);
+    	int temp_index;
+    	if (ss >> temp_index) {
+        	index = temp_index;
+			break;
+    	}
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Invalid index. Please try again." << std::endl;

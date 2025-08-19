@@ -25,6 +25,14 @@ $(TARGET): $(SRCS)
 clean:
 	rm -f $(TARGET)
 
+fclean:
+	make clean
+	rm -f $(TARGET)
+
+re:
+	make fclean
+	make
+
 # .PHONY は、`clean` という名前のファイルが実際に存在していても、
 # このルールが正しく動作するようにするためのおまじないです。
-.PHONY: all clean
+.PHONY: all clean fclean re
