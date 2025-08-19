@@ -43,20 +43,28 @@ void PhoneBook::searchContacts() {
 
 		if (!std::getline(std::cin, line)) {
             throw std::runtime_error("Input stream closed.");
-			break;
         }
 
 		if (line.empty()){
 			std::cout << "Field cannot be empty." << std::endl;
+			continue;
 		}
 		std::stringstream ss(line);
     	int temp_index;
-    	if (ss >> temp_index) {
+    	if (ss >> temp_index && temp_index > 0 && temp_index <= this->contactCount) {
         	index = temp_index;
 			break;
     	}
+		ss >> std::ws;
+        if (!ss.eof()) {
+            std::cout << "Invalid index (extra characters). Please try again." << std::endl;
+            continue;
+        }
+        if (temp_index < 1 || temp_index > this->contactCount) {
+            std::cout << "Index out of range. Valid: 1-" << this->contactCount << std::endl;
+            continue;
+        }
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Invalid index. Please try again." << std::endl;
     }
 
@@ -66,3 +74,4 @@ void PhoneBook::searchContacts() {
 int PhoneBook::getContactCount() {
     return this->contactCount;
 }
+
