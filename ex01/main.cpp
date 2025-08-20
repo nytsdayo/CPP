@@ -41,48 +41,48 @@ int main() {
 }
 
 void add(PhoneBook& phoneBook) {
-	std::string	FirstName;
-	std::string LastName;
-	std::string Nickname;
-	std::string PhoneNumber;
-	std::string DarkestSecret;
+	std::string	firstName;
+	std::string lastName;
+	std::string nickname;
+	std::string phoneNumber;
+	std::string darkestSecret;
 	
 	try {
-    FirstName = (promptAndGetValidatedInput(
+    firstName = (promptAndGetValidatedInput(
         "First Name: ", 
         isValidName,
         "Name can only contain alphabet letters."));
 
-    LastName = (promptAndGetValidatedInput(
+    lastName = (promptAndGetValidatedInput(
         "Last Name: ", 
         isValidName,
         "Name can only contain alphabet letters."));
 
-    Nickname = (promptAndGetValidatedInput(
+    nickname = (promptAndGetValidatedInput(
         "Nickname: ", 
         hasOnlyPrintableChars, 
         "Nickname contains invalid characters.")); 
 
-    PhoneNumber = (promptAndGetValidatedInput(
+    phoneNumber = (promptAndGetValidatedInput(
         "Phone Number: ", 
         isValidPhoneNumber, 
         "Invalid format. Use digits, hyphens, and an optional '+' at the start."));
 
-    DarkestSecret = (promptAndGetValidatedInput(
+    darkestSecret = (promptAndGetValidatedInput(
         "Darkest Secret: ",
         hasOnlyPrintableChars, 
         "Secret contains invalid characters."));
 
 	Contact newContact;
 
-	newContact.setFirstName(FirstName);
-	newContact.setLastName(LastName);
-	newContact.setNickname(Nickname);
-	newContact.setPhoneNumber(PhoneNumber);
-	newContact.setDarkestSecret(DarkestSecret);
+	newContact.setFirstName(firstName);
+	newContact.setLastName(lastName);
+	newContact.setNickname(nickname);
+	newContact.setPhoneNumber(phoneNumber);
+	newContact.setDarkestSecret(darkestSecret);
 	
     phoneBook.addContact(newContact);
-    std::cout << "Contact added successfully." << std::endl;
+    	std::cout << "Contact added successfully." << std::endl;
 	}
 	catch (const std::exception& e) {
         throw; 
