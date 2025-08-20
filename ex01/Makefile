@@ -36,10 +36,10 @@ clean:
 	rm -f $(OBJS)
 
 fclean:
-	make clean
+	make -s clean
 	rm -f $(TARGET)
 re:
-	make fclean
+	make -s fclean
 	make
 # .PHONY の設定
 .PHONY: all clean fclean re
