@@ -4,7 +4,7 @@
 CXX = c++
 
 # コンパイルオプション
-CXXFLAGS = -std=c++98 -Wall -g
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 # 実行可能ファイル名
 TARGET = phonebook
