@@ -35,7 +35,10 @@ namespace {
 	}
 
 	bool isValidPhoneNumber(const std::string& str) {
-		size_t start = (str[0] == '+') ? 1 : 0;
+		if (str[0] == '-' || str[str.length() - 1] == '-') {
+			return false; // '-' cannot be at the start or end
+		}
+		size_t start = (str[0] == '+') ? 1 : 0; // '+' is optional at the start
 		bool hasDigit = false;
 
 		for (size_t i = start; i < str.length(); ++i) {
@@ -57,7 +60,7 @@ namespace {
 		}
 		return true;
 	}
-	
+
 	void add(PhoneBook& phoneBook) {
 		std::string	firstName;
 		std::string lastName;
@@ -84,7 +87,7 @@ namespace {
 			phoneNumber = (promptAndGetValidatedInput(
 				"Phone Number: ", 
 				isValidPhoneNumber, 
-				"Invalid format. Use digits, hyphens (option), and an optional '+' at the start."));
+				"Invalid format. Use digits, hyphens (option, not start or end), and an optional '+' at the start."));
 
 			darkestSecret = (promptAndGetValidatedInput(
 				"Darkest Secret: ",
