@@ -4,7 +4,12 @@
 CXX = c++
 
 # コンパイルオプション
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -g
+# -pedantic: 標準に厳密に従う
+# -std=c++98: C++98標準を使用
+# -Wall: すべての警告を有効にする
+# -Wextra: 追加の警告を有効にする
+# -Werror: 警告をエラーとして扱う
+CXXFLAGS = -pedantic -std=c++98 -Wall -Wextra -Werror -g
 
 # 実行可能ファイル名
 TARGET = phonebook
