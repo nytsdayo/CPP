@@ -8,7 +8,7 @@
 // 無名名前空間 (Cでいう static)
 // ここに定義された関数はこのファイル内でのみ使用可能
 namespace {
-    void printContactsSummary(Contact contacts[], int contactCount) {
+    void printContactsSummary(const Contact contacts[], int contactCount) {
         std::cout << "-------------------------------------------" << std::endl;
         std::cout << "|" << std::setw(10) << std::right << "index";
         std::cout << "|" << std::setw(10) << std::right << "first name";
@@ -21,7 +21,7 @@ namespace {
     	std::cout << "-------------------------------------------" << std::endl;
 	}
 
-	int promptIndex(int contactCount) {
+	int promptIndex(const int contactCount) {
         while (true) {
             std::cout << "Enter index to display: ";
             std::string line;
@@ -56,7 +56,7 @@ PhoneBook::PhoneBook() {
     this->nextIndex = 0;
 }
 
-void PhoneBook::addContact(Contact newContact) {
+void PhoneBook::addContact(const Contact newContact) {
     this->contacts[this->nextIndex] = newContact;
     this->nextIndex = (this->nextIndex + 1) % 8;
     if (this->contactCount < 8) {
@@ -64,7 +64,7 @@ void PhoneBook::addContact(Contact newContact) {
     }
 }
 
-void PhoneBook::searchContacts() {
+void PhoneBook::searchContacts() const {
     if (this->contactCount == 0) {
         std::cout << "Phonebook is empty." << std::endl;
         return;
@@ -77,7 +77,7 @@ void PhoneBook::searchContacts() {
     this->contacts[index - 1].displayDetail();
 }
 
-int PhoneBook::getContactCount() {
+int PhoneBook::getContactCount() const {
     return this->contactCount;
 }
 

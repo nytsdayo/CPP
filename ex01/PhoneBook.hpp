@@ -11,9 +11,9 @@ class PhoneBook {
 
 	public:
     	PhoneBook();
-    	void addContact(Contact newContact);
-    	void searchContacts();
-    	int getContactCount();
+    	void addContact(const Contact newContact);
+    	void searchContacts() const;
+    	int getContactCount() const;
 };
 
 #endif

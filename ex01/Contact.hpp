@@ -24,9 +24,8 @@ public:
     std::string getNickname() const;
     std::string getPhoneNumber() const;
     std::string getDarkestSecret() const;
-    bool isValid();
-    void displaySummary(int index);
-    void displayDetail();
+    void displaySummary(const int index) const;
+    void displayDetail() const;
 };
 
 #endif

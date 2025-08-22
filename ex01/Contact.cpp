@@ -3,15 +3,17 @@
 #include <iomanip>
 
 // privateなヘルパー関数：表示用に文字列を切り詰める
-static std::string truncate(std::string str) {
-    if (str.length() > 10) {
-        return str.substr(0, 9) + ".";
-    }
-    return str;
+namespace {	
+	std::string truncate(std::string str) {
+		if (str.length() > 10) {
+			return str.substr(0, 9) + ".";
+		}
+		return str;
+	}
 }
 
 void Contact::setFirstName(const std::string& name) {
-    this->first_name = name; // this->は省略可能
+    first_name = name;
 }
 
 void Contact::setLastName(const std::string& name) {
@@ -50,7 +52,7 @@ std::string Contact::getDarkestSecret() const {
     return darkest_secret;
 }
 
-void Contact::displaySummary(int index) {
+void Contact::displaySummary(const int index) const {
     std::cout << "|" << std::setw(10) << std::right << index;
     std::cout << "|" << std::setw(10) << std::right << truncate(this->first_name);
     std::cout << "|" << std::setw(10) << std::right << truncate(this->last_name);
@@ -58,7 +60,7 @@ void Contact::displaySummary(int index) {
     std::cout << "|" << std::endl;
 }
 
-void Contact::displayDetail() {
+void Contact::displayDetail() const {
     std::cout << "First Name:     " << this->first_name << std::endl;
     std::cout << "Last Name:      " << this->last_name << std::endl;
     std::cout << "Nickname:       " << this->nickname << std::endl;
