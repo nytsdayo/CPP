@@ -78,46 +78,41 @@ namespace {
 		std::string phoneNumber;
 		std::string darkestSecret;
 		
-		try {
-			firstName = (promptAndGetValidatedInput(
-				"First Name: ", 
-				isValidName,
-				"Invalid format. Name can only contain alphabet letters, hyphens, and backticks.\n No consecutive hyphens or hyphen followed by backtick."));
+		firstName = (promptAndGetValidatedInput(
+			"First Name: ", 
+			isValidName,
+			"Invalid format. Name can only contain alphabet letters, hyphens, and backticks.\n No consecutive hyphens or hyphen followed by backtick."));
 
-			lastName = (promptAndGetValidatedInput(
-				"Last Name: ", 
-				isValidName,
-				"Invalid format. Name can only contain alphabet letters, hyphens, and backticks.\n No consecutive hyphens or hyphen followed by backtick."));
+		lastName = (promptAndGetValidatedInput(
+			"Last Name: ", 
+			isValidName,
+			"Invalid format. Name can only contain alphabet letters, hyphens, and backticks.\n No consecutive hyphens or hyphen followed by backtick."));
 
-			nickname = (promptAndGetValidatedInput(
-				"Nickname: ", 
-				hasOnlyPrintableChars, 
-				"Nickname contains invalid characters.")); 
+		nickname = (promptAndGetValidatedInput(
+			"Nickname: ", 
+			hasOnlyPrintableChars, 
+			"Nickname contains invalid characters.")); 
 
-			phoneNumber = (promptAndGetValidatedInput(
-				"Phone Number: ", 
-				isValidPhoneNumber, 
-				"Invalid format. Use digits, hyphens (option, not start or end), and an optional '+' at the start.\n No consecutive hyphens."));
+		phoneNumber = (promptAndGetValidatedInput(
+			"Phone Number: ", 
+			isValidPhoneNumber, 
+			"Invalid format. Use digits, hyphens (option, not start or end), and an optional '+' at the start.\n No consecutive hyphens."));
 
-			darkestSecret = (promptAndGetValidatedInput(
-				"Darkest Secret: ",
-				hasOnlyPrintableChars, 
-				"Secret contains invalid characters."));
+		darkestSecret = (promptAndGetValidatedInput(
+			"Darkest Secret: ",
+			hasOnlyPrintableChars, 
+			"Secret contains invalid characters."));
 
-			Contact newContact;
+		Contact newContact;
 
-			newContact.setFirstName(firstName);
-			newContact.setLastName(lastName);
-			newContact.setNickname(nickname);
-			newContact.setPhoneNumber(phoneNumber);
-			newContact.setDarkestSecret(darkestSecret);
-			
-			phoneBook.addContact(newContact);
-				std::cout << "Contact added successfully." << std::endl;
-		}
-		catch (const std::exception& e) {
-			throw; 
-		}
+		newContact.setFirstName(firstName);
+		newContact.setLastName(lastName);
+		newContact.setNickname(nickname);
+		newContact.setPhoneNumber(phoneNumber);
+		newContact.setDarkestSecret(darkestSecret);
+		
+		phoneBook.addContact(newContact);
+			std::cout << "Contact added successfully." << std::endl;
 	}
 }
 
