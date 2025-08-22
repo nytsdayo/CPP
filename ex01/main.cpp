@@ -28,8 +28,15 @@ namespace {
 	}
 
 	bool isValidName(const std::string& str) {
+		if (!isalpha(str[0])) {
+			return false; // Name must start with an alphabet letter
+		}
 		for (size_t i = 0; i < str.length(); i++) {
-			if (!isalpha(str[i])) return false;
+			if (!isalpha(str[i]) && str[i] != '-' && str[i] != '`')
+				return false;
+		}
+		if (str.find("--") != std::string::npos || str.find("`-") != std::string::npos || str.find("-`") != std::string::npos || str.find("``") != std::string::npos) {
+			return false; // No consecutive hyphens or hyphen followed by backtick
 		}
 		return true;
 	}
@@ -48,6 +55,9 @@ namespace {
 			if (isdigit(str[i])) {
 				hasDigit = true;
 			}
+		}
+		if (str.find("--") != std::string::npos) {
+			return false;
 		}
 		return hasDigit;
 	}
@@ -72,12 +82,12 @@ namespace {
 			firstName = (promptAndGetValidatedInput(
 				"First Name: ", 
 				isValidName,
-				"Name can only contain alphabet letters."));
+				"Invalid format. Name can only contain alphabet letters, hyphens, and backticks.\n No consecutive hyphens or hyphen followed by backtick."));
 
 			lastName = (promptAndGetValidatedInput(
 				"Last Name: ", 
 				isValidName,
-				"Name can only contain alphabet letters."));
+				"Invalid format. Name can only contain alphabet letters, hyphens, and backticks.\n No consecutive hyphens or hyphen followed by backtick."));
 
 			nickname = (promptAndGetValidatedInput(
 				"Nickname: ", 
@@ -87,7 +97,7 @@ namespace {
 			phoneNumber = (promptAndGetValidatedInput(
 				"Phone Number: ", 
 				isValidPhoneNumber, 
-				"Invalid format. Use digits, hyphens (option, not start or end), and an optional '+' at the start."));
+				"Invalid format. Use digits, hyphens (option, not start or end), and an optional '+' at the start.\n No consecutive hyphens."));
 
 			darkestSecret = (promptAndGetValidatedInput(
 				"Darkest Secret: ",
